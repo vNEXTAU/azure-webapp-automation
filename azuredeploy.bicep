@@ -6,27 +6,19 @@ param serverFarmResourceGroup string
 param alwaysOn bool
 param sku string
 param skuCode string
-param workerSize string
-param workerSizeId string
-param numberOfWorkers string
-param currentStack string
+param targetWorkerSizeId int
+param targetWorkerCount int
 param phpVersion string
 param netFrameworkVersion string
 
-resource name_resource 'Microsoft.Web/sites@2018-11-01' = {
+
+resource name_resource 'Microsoft.Web/sites@2020-06-01' = {
   name: name
   location: location
   tags: {}
   properties: {
-    name: name
     siteConfig: {
       appSettings: []
-      metadata: [
-        {
-          name: 'CURRENT_STACK'
-          value: currentStack
-        }
-      ]
       phpVersion: phpVersion
       netFrameworkVersion: netFrameworkVersion
       alwaysOn: alwaysOn
@@ -39,20 +31,18 @@ resource name_resource 'Microsoft.Web/sites@2018-11-01' = {
   ]
 }
 
-resource hostingPlanName_resource 'Microsoft.Web/serverfarms@2018-11-01' = {
+resource hostingPlanName_resource 'Microsoft.Web/serverfarms@2020-06-01' = {
   name: hostingPlanName
   location: location
   kind: ''
   tags: {}
   properties: {
-    name: hostingPlanName
-    workerSize: workerSize
-    workerSizeId: workerSizeId
-    numberOfWorkers: numberOfWorkers
+    targetWorkerSizeId: targetWorkerSizeId
+    targetWorkerCount: targetWorkerCount
   }
   sku: {
-    Tier: sku
-    Name: skuCode
+    tier: sku
+    name: skuCode
   }
   dependsOn: []
 }

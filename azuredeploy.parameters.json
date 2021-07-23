@@ -26,17 +26,11 @@
         "skuCode": {
             "value": "F1"
         },
-        "workerSize": {
-            "value": "0"
+        "targetWorkerSizeId": {
+            "value": 0
         },
-        "workerSizeId": {
-            "value": "0"
-        },
-        "numberOfWorkers": {
-            "value": "1"
-        },
-        "currentStack": {
-            "value": "dotnet"
+        "targetWorkerCount": {
+            "value": 1
         },
         "phpVersion": {
             "value": "OFF"
